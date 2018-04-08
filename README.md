@@ -1,5 +1,3 @@
-# 
-
 ## Project Title
 AjaxBasics (This Repository shows Basics of Ajax and different types of ajax call.)
 ## Getting Started
