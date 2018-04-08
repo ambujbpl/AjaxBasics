@@ -30,14 +30,7 @@ Open development tool in your web browser. Check AJAX response in console window
 
 ## Authors
 
-* **Ambuj Dubey(www.ambujdubey.cf)** - *Initial work* - [PurpleBooth]( https://github.com/ambujbpl/AjaxBasics)
-
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* **Ambuj Dubey(www.ambujdubey.cf)** - *Initial work* - [AjaxBasics]( https://github.com/ambujbpl/AjaxBasics)
 
 ## Contact
 
