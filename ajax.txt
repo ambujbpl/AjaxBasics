@@ -10,3 +10,5 @@ AJAX is a developer's dream, because you can:
   2  Request data from a server - after the page has loaded
   3  Receive data from a server - after the page has loaded
   4  Send data to a server - in the background
+
+For Read more about various AJAX call checkout my separate branches
