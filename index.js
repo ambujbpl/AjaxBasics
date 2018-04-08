@@ -1,28 +1,16 @@
-var employee = [{
-    "name": "Ambuj Dubey"
-  },
-  {
-    "name": "Akash Thakur"
-  },
-  {
-    "name": "Ajay Mina"
-  },
-  {
-    "name": "Anirudhra Tiwari"
-  },
-  {
-    "name": "Avinash Verma"
-  },
-];
-var fruits = ["Apple", "Banana", "Blackberry"];
-employee.forEach(function(data) {
-  console.log(data);
+// JQuery AJAX call
+function errorHandler(jqXHR, textStatus, error){
+  console.log(error);
+};
+$.ajax({
+  type:"GET",
+  url:"employee.json",
+  success: employee,
+  error: errorHandler,
+  cache: false,
+  async: false    //if async:false ==> means synchronus async:true ==> asynchronus
 });
-fruits.forEach(myfruit);
-console.log(employee);
-
-function myfruit(x) {
-  console.log(x);
-}
-console.log("Everything Done!");
-// Note-----for each is synchronus javascript
+function employee(data){
+  console.log(data);
+};
+console.log("http request done!");
