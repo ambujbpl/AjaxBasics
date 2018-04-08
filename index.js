@@ -8,9 +8,27 @@ $.ajax({
   success: employee,
   error: errorHandler,
   cache: false,
-  async: false    //if async:false ==> means synchronus async:true ==> asynchronus
+  async: true    //if async:false ==> means synchronus async:true ==> asynchronus
 });
 function employee(data){
-  console.log(data);
+    console.log("Employee Data>>>",data);
+    $.ajax({
+      type:"GET",
+      url:"student.json",
+      success: student,
+      error: errorHandler
+    });
+
 };
-console.log("http request done!");
+function student(data){
+  console.log("Student Data>>>",data);
+  $.ajax({
+    type:"GET",
+    url:"invigilator.json",
+    success:invigilator,
+    error:errorHandler
+  });
+};
+function invigilator(data){
+  console.log("Invigilator Data>>>>",data);
+};
