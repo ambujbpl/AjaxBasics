@@ -1,12 +1,28 @@
-// JQuery AJAX call
-$.get("employee.json", function(data){
+var employee = [{
+    "name": "Ambuj Dubey"
+  },
+  {
+    "name": "Akash Thakur"
+  },
+  {
+    "name": "Ajay Mina"
+  },
+  {
+    "name": "Anirudhra Tiwari"
+  },
+  {
+    "name": "Avinash Verma"
+  },
+];
+var fruits = ["Apple", "Banana", "Blackberry"];
+employee.forEach(function(data) {
   console.log(data);
 });
-console.log("http requet done");
-// It is basically asynchronus call so in output below console execute first then it will print response.
+fruits.forEach(myfruit);
+console.log(employee);
 
-// // or you can simply call like
-// $.getJSON("employee.json", function(data){
-//   console.log(data);
-// });
-// console.log("http requet done");
+function myfruit(x) {
+  console.log(x);
+}
+console.log("Everything Done!");
+// Note-----for each is synchronus javascript
