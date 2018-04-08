@@ -1,34 +1,31 @@
-// JQuery AJAX call
-function errorHandler(jqXHR, textStatus, error){
-  console.log(error);
-};
-$.ajax({
-  type:"GET",
-  url:"employee.json",
-  success: employee,
-  error: errorHandler,
-  cache: false,
-  async: true    //if async:false ==> means synchronus async:true ==> asynchronus
-});
-function employee(data){
-    console.log("Employee Data>>>",data);
-    $.ajax({
-      type:"GET",
-      url:"student.json",
-      success: student,
-      error: errorHandler
-    });
-
-};
-function student(data){
-  console.log("Student Data>>>",data);
-  $.ajax({
-    type:"GET",
-    url:"invigilator.json",
-    success:invigilator,
-    error:errorHandler
+// Native promise api used for ES6 javascript
+function get(url){
+  return new Promise(function(resolve, reject){
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("GET",url,true);
+      xhttp.onload = function(){
+        if(xhttp.status == 200){
+          resolve(JSON.parse(xhttp.response));
+        }else{
+          reject(xhttp.statusText);
+        }
+      };
+      xhttp.onerror = function(){
+        reject(xhttp.statusText);
+      };
+      xhttp.send();
   });
 };
-function invigilator(data){
-  console.log("Invigilator Data>>>>",data);
-};
+
+var promise = get("employee.json");
+promise.then(function(emp){
+  console.log("Employee>>",emp);
+  return get("student.json");
+}).then(function(stu){
+  console.log("Student",stu);
+  return get("invigilator.json")
+}).then(function(inv){
+  console.log("Invigilator",inv);
+}).catch(function(error){
+  console.log(error);
+});
