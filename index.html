@@ -6,28 +6,37 @@
 <body>
 <script type="text/javascript">
   console.log('step 1');
-  const getData = (callback) => {
+  const getData = (url,callback) => {
 
     const xhttp = new XMLHttpRequest();
     xhttp.addEventListener('readystatechange', () => {
       if (xhttp.readyState == 4 && xhttp.status == 200) {
          // Typical action to be performed when the document is ready:
          // console.log('response :-> ',xhttp.responseText);
-        callback(undefined, xhttp.responseText);
+        callback(undefined, JSON.parse(xhttp.responseText));
       } else if (xhttp.readyState == 4) {
         callback('Something went wrong',undefined);
       }
     })
-    xhttp.open("GET", "https://jsonplaceholder.typicode.com/todos/1");
+    xhttp.open("GET", url);
     xhttp.send();
   }
   console.log('step 2');
-  getData((err,data)=> {
-    if(err) {
-      console.log('Error : - > ',err);
-    } else {
-      console.log('Data : - > ',data);
-    }
+  getData("https://jsonplaceholder.typicode.com/todos/1",(err,data)=> {
+    // if(err) {
+    //   console.log('Error : - > ',err);
+    // } else {
+    //   console.log('Data : - > ',data);
+    // }
+    console.log('1 data : ',data);
+    getData("https://jsonplaceholder.typicode.com/todos/2",(err,data)=> {
+      
+      console.log('2 data : ',data);
+      getData("https://jsonplaceholder.typicode.com/todos/3",(err,data)=> {
+      console.log('3 data : ',data);
+        
+      })
+    })
   });
   console.log('step 3');
 </script>
