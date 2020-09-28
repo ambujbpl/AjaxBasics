@@ -5,40 +5,38 @@
 </head>
 <body>
 <script type="text/javascript">
-  console.log('step 1');
-  const getData = (url,callback) => {
+  const getSomething = (url) => {
+    console.log('url : ',url);
+    return new Promise((resolve,reject) => {
+      const xhttp = new XMLHttpRequest();
+      xhttp.addEventListener('readystatechange', () => {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+          resolve(JSON.parse(xhttp.responseText))
+        } else if(this.readyState == 4) {
+          reject('Something went wrong');
+        }
+      });
+      xhttp.open("GET", url);
+      xhttp.send();      
+      // fetch(url, {})
+      // .then((resp) => resp.json())
+      // .then(data => {
+      //   return Promise.resolve(JSON.parse(data));
+      // })
+      // .catch(err => { 
+      //   return Promise.reject('Something went wrong');
+      // })
 
-    const xhttp = new XMLHttpRequest();
-    xhttp.addEventListener('readystatechange', () => {
-      if (xhttp.readyState == 4 && xhttp.status == 200) {
-         // Typical action to be performed when the document is ready:
-         // console.log('response :-> ',xhttp.responseText);
-        callback(undefined, JSON.parse(xhttp.responseText));
-      } else if (xhttp.readyState == 4) {
-        callback('Something went wrong',undefined);
-      }
+
+      // resolve('done');
+      // reject('done');
     })
-    xhttp.open("GET", url);
-    xhttp.send();
   }
-  console.log('step 2');
-  getData("https://jsonplaceholder.typicode.com/todos/1",(err,data)=> {
-    // if(err) {
-    //   console.log('Error : - > ',err);
-    // } else {
-    //   console.log('Data : - > ',data);
-    // }
-    console.log('1 data : ',data);
-    getData("https://jsonplaceholder.typicode.com/todos/2",(err,data)=> {
-      
-      console.log('2 data : ',data);
-      getData("https://jsonplaceholder.typicode.com/todos/3",(err,data)=> {
-      console.log('3 data : ',data);
-        
-      })
-    })
-  });
-  console.log('step 3');
+  getSomething("https://jsonplaceholder.typicode.com/todos/1").then((data) => {
+    console.log('1 data : -> ',data);
+  }).catch(err => {
+    console.log('err : ',err);
+  })
 </script>
 </body>
 </html>
